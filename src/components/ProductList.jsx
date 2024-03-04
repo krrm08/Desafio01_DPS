@@ -1,4 +1,3 @@
-// Dentro de ProductList.jsx
 import React, { useState } from "react";
 import { data } from "../app/data";
 
@@ -14,9 +13,11 @@ export const ProductList = ({
 }) => {
   const [productsData, setProductsData] = useState(data);
 
+  //Funcion flecha para actuliazar el stock
   const onAddProduct = (product) => {
     const updatedProduct = { ...product, available: product.available - 1 };
 
+    //confirma si hay disponibilidad, si no la hay muestra mensaje escrito
     if (updatedProduct.available === -1) {
       alert("Lo sentimos, este producto no está disponible por el momento.");
       return;
@@ -27,6 +28,7 @@ export const ProductList = ({
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
 
+      //Variables de estado para manejar cuando se agreguen productos al carrito
       setTotal(total + product.price);
       setSubtotal(subtotal + product.price);
       setCountProducts(countProducts + 1);
@@ -46,6 +48,7 @@ export const ProductList = ({
     );
   };
 
+  //redefine la estructura y visualizacion de los productos en data.js
   return (
     <div className="container-items">
       {productsData.map((product) => (
