@@ -15,6 +15,7 @@ export const Headers = ({
   const [active, setActive] = useState(false);
   const [showInvoicePopup, setShowInvoicePopup] = useState(false);
 
+  //Funcion flecha para borrar un producto
   const onDeleteProduct = (product) => {
     // Mostrar un mensaje de confirmación antes de eliminar un producto
     const isConfirmed = window.confirm(`¿Seguro que quieres eliminar ${product.title} del carrito?`);
@@ -27,7 +28,8 @@ export const Headers = ({
       setAllProducts(results);
     }
   };
-  
+
+  //Funcion flecha para vaciar el carrito
   const onCleanCart = () => {
     // Mostrar un mensaje de confirmación antes de vaciar el carrito
     const isConfirmed = window.confirm("¿Seguro que quieres vaciar el carrito?");
@@ -39,7 +41,8 @@ export const Headers = ({
       setSubtotal(0);
     }
   };
-  
+
+  //Estructura del header
   return (
     <header>
       <h1>Cub Shop</h1>
@@ -58,7 +61,8 @@ export const Headers = ({
           className={`container-cart-products ${active ? "" : "hidden-cart"}`}
         >
           {allProducts.length ? (
-            <>
+          //Estructura del carrito  
+          <>
               <div className="row-product">
                 {allProducts.map((product) => (
                   <div className="cart-product" key={product.id}>
@@ -87,6 +91,7 @@ export const Headers = ({
                 <h3>Total:</h3>
                 <span className="total-pagar">${total}</span>
               </div>
+            //Boton para el manejo del carrito
               <button className="btn-clear-all" onClick={onCleanCart}>
                 Vaciar Carrito
               </button>
@@ -97,6 +102,7 @@ export const Headers = ({
                 Ver Factura
               </button>
 
+            //PopUp para visualización de la factura 
               {showInvoicePopup && (
                 <div className="invoice-popup">
                   <div className="invoice-container">
